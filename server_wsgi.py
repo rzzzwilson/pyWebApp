@@ -1,9 +1,15 @@
 import threading
 import webbrowser
 from wsgiref.simple_server import make_server
+import math
 
 FILE = 'frontend.html'
 PORT = 8080
+
+def fib(n):
+    if n < 2:
+        return n
+    return fib(n-2) + fib(n-1)
 
 def test_app(environ, start_response):
     if environ['REQUEST_METHOD'] == 'POST':
@@ -13,7 +19,8 @@ def test_app(environ, start_response):
         except (TypeError, ValueError):
             request_body = "0"
         try:
-            response_body = str(int(request_body) ** 2)
+            #response_body = str(math.sqrt(float(request_body)))
+            response_body = str(fib(int(request_body)))
         except:
             response_body = "error"
         status = '200 OK'
