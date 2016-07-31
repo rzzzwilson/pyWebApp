@@ -27,6 +27,7 @@ def test_app(environ, start_response):
         try:
             start = time.time()
             result = fib(int(request_body))
+            print('result=%s' % str(result))
             delta = time.time() - start
             response_body = '%d  (took %.6fs)' % (result, delta)
         except:
