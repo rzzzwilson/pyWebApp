@@ -43,20 +43,21 @@ function xml_http_post(url, data, callback) {
     req.send(data);
 }
 
+function test_handle(req)
+{
+    var elem = document.getElementById('test_result')
+    elem.innerHTML =  req.responseText
+    alert('test_handle: .responseText=' + req.responseText + ', elem=' + elem);
+}
+
 function test_button()
 {
     var elem = document.getElementById('test_result')
     elem.innerHTML = "calculating..."
 
     var data = document.test_form.test_text.value;           
-    alert('data ', data);
+    alert('test_button: data=' + data);
     xml_http_post("frontend.html", data, test_handle)
-}
-
-function test_handle(req)
-{
-    var elem = document.getElementById('test_result')
-    elem.innerHTML =  req.responseText
 }
 
 //document.getElementById('fib_param').addEventListener("keyup", function(event)
@@ -72,11 +73,13 @@ function test_handle(req)
 </script>
 
 <form name=test_form>
-<input type=button id="calc_button" onClick="test_button();" value="Calculate" title="calculate">
 Fib(
 <input id="fib_param" type="text" name="test_text" value="0" size="4" onkeydown = "if (event.keyCode == 13) test_button();">
 ) =
 <span id="test_result">0</span>
+<br>
+<br>
+<input type=button id="calc_button" onClick="test_button();" value="Calculate" title="calculate">
 </form>
 
 <hr>
@@ -84,6 +87,12 @@ Fib(
 <span id="logo">
 <img src="Game_of_life_animated_glider.gif" alt="Life glider" border="2" />
 </span>
+
+<br>
+This is a simple test case for pyWebApp.
+<br>
+The point is to show a simple page served from the server and some interactions between the
+page and the server.
 
 </body>
 </html>

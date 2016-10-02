@@ -14,11 +14,13 @@ class TestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         """Handle a post request by returning the square of the number."""
         length = int(self.headers.getheader('content-length'))        
         data_string = self.rfile.read(length)
+        print('do_POST: data_string=%s' % str(data_string))
         try:
             result = int(data_string) ** 2
         except:
             result = 'error'
         self.wfile.write(result)
+
 
 
 def open_browser():
